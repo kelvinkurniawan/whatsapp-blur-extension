@@ -273,6 +273,67 @@ footer._ak4l {
 	background: transparent !important;
 }
 
+/* ── Contact info / group info drawer ───────────────── */
+
+/* Panel container — selector dari DOM asli WhatsApp Web */
+[data-testid="chat-info-drawer"] {
+	background: rgba(16, 16, 22, 0.88) !important;
+	backdrop-filter: blur(32px) saturate(180%) !important;
+	-webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+	border-left: 1px solid var(--glass-border) !important;
+}
+
+/* Panel header — strip glass dengan shadow ke bawah */
+[data-testid="chat-info-drawer"] header {
+	background: var(--glass-bg) !important;
+	backdrop-filter: var(--glass-blur) !important;
+	-webkit-backdrop-filter: var(--glass-blur) !important;
+	border-bottom: 1px solid var(--glass-border) !important;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Setiap section — floating glass card */
+[data-testid="chat-info-drawer"] section {
+	background: rgba(255, 255, 255, 0.04) !important;
+	backdrop-filter: blur(12px) !important;
+	-webkit-backdrop-filter: blur(12px) !important;
+	border: 1px solid var(--glass-border) !important;
+	border-radius: var(--radius-lg) !important;
+	margin: 6px 10px !important;
+	overflow: hidden !important;
+	box-shadow:
+		0 2px 12px rgba(0, 0, 0, 0.2),
+		inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Divider antar row dalam section */
+[data-testid="chat-info-drawer"] section > * {
+	border-bottom: 1px solid var(--glass-border) !important;
+	transition: background 0.12s ease !important;
+}
+
+[data-testid="chat-info-drawer"] section > *:last-child {
+	border-bottom: none !important;
+}
+
+/* Row hover effect */
+[data-testid="chat-info-drawer"] section > *:hover {
+	background: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Media gallery grid */
+[data-testid="media-gallery"] {
+	background: rgba(255, 255, 255, 0.03) !important;
+	border-radius: var(--radius-md) !important;
+	overflow: hidden !important;
+}
+
+/* Media thumbnail hover */
+[data-testid="media-canvas"]:hover {
+	opacity: 0.85 !important;
+	transition: opacity 0.15s ease !important;
+}
+
 /* ── Emoji / sticker / GIF picker ───────────────────── */
 
 /* Outer floating container (parents of expressions-panel) */
