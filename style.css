@@ -11,6 +11,8 @@
   --radius-md: 12px;
   --radius-sm: 8px;
   --accent: #0a84ff;
+  --wa-green: #31a24c;
+  --wa-green-light: #dcf8c6;
   --text-primary: rgba(255, 255, 255, 0.92);
   --text-secondary: rgba(255, 255, 255, 0.48);
 }
@@ -136,30 +138,105 @@ header._aotl {
   padding-top: 12px !important;
 }
 
-/* ── Message bubbles — glass ─────────────────────────── */
+/* ── Message bubbles — soft glass ────────────────────── */
 
 [data-testid="msg-container"] {
   border-radius: var(--radius-lg) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* Outgoing — accent glass */
+/* Glass wrapper for all messages */
 .message-out [data-testid="msg-container"],
-.message-out .copyable-area > div:first-child {
-  background: rgba(10, 132, 255, 0.20) !important;
-  backdrop-filter: blur(14px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
-  border: 1px solid rgba(10, 132, 255, 0.32) !important;
-  box-shadow: 0 2px 18px rgba(10, 132, 255, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+.message-in [data-testid="msg-container"] {
+  backdrop-filter: blur(16px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(170%) !important;
 }
 
-/* Incoming — neutral glass */
-.message-in [data-testid="msg-container"],
-.message-in .copyable-area > div:first-child {
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(14px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.13) !important;
-  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.10) !important;
+/* Outgoing — soft green glass */
+.message-out [data-testid="msg-container"] {
+  background: rgba(84, 167, 107, 0.12) !important;
+  border: 1px solid rgba(84, 167, 107, 0.18) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Incoming — soft neutral glass */
+.message-in [data-testid="msg-container"] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Ensure all nested content is transparent to show glass */
+[data-testid="msg-container"] * {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Hide pseudo-elements that break glass effect */
+[data-testid="msg-container"]::before,
+[data-testid="msg-container"]::after,
+.message-out::before,
+.message-out::after,
+.message-in::before,
+.message-in::after,
+.copyable-text::before,
+.copyable-text::after {
+  display: none !important;
+}
+
+/* Hide message tail (bubble arrow) */
+[data-testid="tail-in"],
+[data-testid="tail-out"],
+span[data-testid*="tail"] {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* ── Message hover glow & reveal effect ──────────────── */
+
+.message-out,
+.message-in {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* Outgoing message hover — bright glow */
+.message-out:hover [data-testid="msg-container"] {
+  background: rgba(84, 167, 107, 0.20) !important;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 0 24px rgba(84, 167, 107, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+}
+
+/* Incoming message hover — subtle white glow */
+.message-in:hover [data-testid="msg-container"] {
+  background: rgba(255, 255, 255, 0.10) !important;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 0 20px rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+}
+
+/* Text reveal on hover */
+.message-out:hover [data-testid="msg-container"] span,
+.message-in:hover [data-testid="msg-container"] span {
+  color: rgba(255, 255, 255, 1) !important;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.1) !important;
+  transition: color 0.3s ease !important;
+}
+
+/* Timestamp & status brighten on hover */
+.message-out:hover [data-testid="msg-time"],
+.message-in:hover [data-testid="msg-time"] {
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* ── Footer / compose bar — floating glass card ─────── */
@@ -297,6 +374,63 @@ body.wa-unblur [data-testid="cell-frame-container"] img,
 body.wa-unblur [data-testid="cell-frame-container"] svg {
   filter: none !important;
   transition: filter 0.25s ease;
+}
+
+/* ── Message status icons (checkmarks) ──────────────── */
+
+/* Status icon container */
+[data-testid="msg-time"],
+.msg-time,
+[data-testid="message-status"] {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 12px !important;
+  transition: color 0.2s ease !important;
+}
+
+/* Checkmark SVGs */
+[data-testid="msg-status"] svg,
+.msg-status svg,
+[data-testid="message-status"] svg {
+  filter: drop-shadow(0 2px 4px rgba(84, 167, 107, 0.3)) !important;
+  transition: filter 0.3s ease, transform 0.2s ease !important;
+}
+
+/* Single checkmark (sent) */
+[data-testid="message-status"] svg:not(:last-child) {
+  color: rgba(84, 167, 107, 0.7) !important;
+}
+
+/* Double checkmark (delivered) */
+[data-testid="message-status"] svg:last-child {
+  color: rgba(84, 167, 107, 0.85) !important;
+}
+
+/* Blue double checkmark (read) */
+.message-out [data-testid="msg-status"] svg:last-child {
+  color: rgba(84, 167, 107, 1) !important;
+}
+
+/* Hover effect on message — brighten status */
+.message-out:hover [data-testid="msg-status"] svg,
+.message-out:hover [data-testid="message-status"] svg {
+  filter: drop-shadow(0 3px 8px rgba(84, 167, 107, 0.5)) !important;
+  transform: scale(1.08) !important;
+}
+
+/* Animation saat icon muncul */
+@keyframes statusPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+[data-testid="message-status"] svg {
+  animation: statusPulse 0.3s ease-out !important;
 }
 
 /* ── Scrollbar ───────────────────────────────────────── */
