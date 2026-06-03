@@ -24,7 +24,7 @@ Karena ekstensi ini belum dipublikasikan ke Chrome Web Store, pemasangannya dila
 **1. Download / clone repo ini**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/whatsapp-blur.git
+git clone https://github.com/kelvinkurniawan/whatsapp-blur.git
 ```
 
 Atau download sebagai ZIP dan ekstrak ke folder yang mudah diingat (misalnya `~/Extensions/whatsapp-blur`).
@@ -55,10 +55,10 @@ Buka [https://web.whatsapp.com](https://web.whatsapp.com) — tampilan langsung 
 
 ## Cara Pakai
 
-| Aksi | Shortcut |
-|---|---|
-| Toggle blur ON/OFF | `Cmd + Shift + 0` (Mac) / `Ctrl + Shift + 0` (Win/Linux) |
-| Lihat kontak sebentar | Hover cursor ke chat list item |
+| Aksi                  | Shortcut                                                 |
+| --------------------- | -------------------------------------------------------- |
+| Toggle blur ON/OFF    | `Cmd + Shift + 0` (Mac) / `Ctrl + Shift + 0` (Win/Linux) |
+| Lihat kontak sebentar | Hover cursor ke chat list item                           |
 
 Status blur ditampilkan lewat toast notifikasi di bagian bawah layar.
 
