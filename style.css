@@ -1,86 +1,88 @@
 :root {
-  --glass-bg: rgba(28, 28, 30, 0.72);
-  --glass-bg-hover: rgba(58, 58, 60, 0.6);
-  --glass-bg-active: rgba(10, 132, 255, 0.14);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-accent: rgba(10, 132, 255, 0.22);
-  --glass-blur: blur(24px) saturate(180%);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07);
-  --radius-xl: 22px;
-  --radius-lg: 16px;
-  --radius-md: 12px;
-  --radius-sm: 8px;
-  --accent: #0a84ff;
-  --wa-green: #31a24c;
-  --wa-green-light: #dcf8c6;
-  --text-primary: rgba(255, 255, 255, 0.92);
-  --text-secondary: rgba(255, 255, 255, 0.48);
+	--glass-bg: rgba(28, 28, 30, 0.72);
+	--glass-bg-hover: rgba(58, 58, 60, 0.6);
+	--glass-bg-active: rgba(10, 132, 255, 0.14);
+	--glass-border: rgba(255, 255, 255, 0.08);
+	--glass-border-accent: rgba(10, 132, 255, 0.22);
+	--glass-blur: blur(24px) saturate(180%);
+	--glass-shadow:
+		0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+	--radius-xl: 22px;
+	--radius-lg: 16px;
+	--radius-md: 12px;
+	--radius-sm: 8px;
+	--accent: #0a84ff;
+	--wa-green: #31a24c;
+	--wa-green-light: #dcf8c6;
+	--text-primary: rgba(255, 255, 255, 0.92);
+	--text-secondary: rgba(255, 255, 255, 0.48);
 }
 
 /* ── Base ────────────────────────────────────────────── */
 
 body {
-  background:
-    radial-gradient(ellipse at 15% 15%, #22224a 0%, transparent 52%),
-    radial-gradient(ellipse at 85% 85%, #0f2038 0%, transparent 52%),
-    radial-gradient(ellipse at 50% 100%, #1c1c30 0%, transparent 40%),
-    #090910 !important;
+	background:
+		radial-gradient(ellipse at 15% 15%, #22224a 0%, transparent 52%),
+		radial-gradient(ellipse at 85% 85%, #0f2038 0%, transparent 52%),
+		radial-gradient(ellipse at 50% 100%, #1c1c30 0%, transparent 40%), #090910 !important;
 }
 
 #app,
 .app-wrapper-web {
-  background: transparent !important;
+	background: transparent !important;
 }
 
 /* ── Left sidebar — glass panel ─────────────────────── */
 
 [data-testid="sidebar"],
 [data-testid="pane-side"] {
-  background: var(--glass-bg) !important;
-  backdrop-filter: var(--glass-blur) !important;
-  -webkit-backdrop-filter: var(--glass-blur) !important;
-  border-right: 1px solid var(--glass-border) !important;
+	background: var(--glass-bg) !important;
+	backdrop-filter: var(--glass-blur) !important;
+	-webkit-backdrop-filter: var(--glass-blur) !important;
+	border-right: 1px solid var(--glass-border) !important;
 }
 
 /* Search + header strip inside sidebar */
 [data-testid="sidebar-search"],
 header._aotl {
-  background: transparent !important;
+	background: transparent !important;
 }
 
 /* Search pill */
 [data-testid="search-input-container"],
 [role="searchbox"] {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid var(--glass-border) !important;
-  border-radius: 50px !important;
-  color: var(--text-primary) !important;
+	background: rgba(255, 255, 255, 0.06) !important;
+	border: 1px solid var(--glass-border) !important;
+	border-radius: 50px !important;
+	color: var(--text-primary) !important;
 }
 
 /* ── Chat list ───────────────────────────────────────── */
 
 [data-testid="chat-list"] {
-  background: transparent !important;
+	background: transparent !important;
 }
 
 [data-testid="cell-frame-container"] {
-  border-radius: var(--radius-md) !important;
-  margin: 1px 6px !important;
-  transition: background 0.18s ease, border 0.18s ease !important;
-  border: 1px solid transparent !important;
+	border-radius: var(--radius-md) !important;
+	margin: 1px 6px !important;
+	transition:
+		background 0.18s ease,
+		border 0.18s ease !important;
+	border: 1px solid transparent !important;
 }
 
 [data-testid="cell-frame-container"]:hover {
-  background: var(--glass-bg-hover) !important;
-  border-color: var(--glass-border) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+	background: var(--glass-bg-hover) !important;
+	border-color: var(--glass-border) !important;
+	backdrop-filter: blur(12px) !important;
+	-webkit-backdrop-filter: blur(12px) !important;
 }
 
 [data-testid="cell-frame-container"][aria-selected="true"],
 [data-testid="cell-frame-container"].active {
-  background: var(--glass-bg-active) !important;
-  border-color: var(--glass-border-accent) !important;
+	background: var(--glass-bg-active) !important;
+	border-color: var(--glass-border-accent) !important;
 }
 
 /* ── Privacy blur (preserved) ───────────────────────── */
@@ -89,33 +91,33 @@ header._aotl {
 [data-testid="last-msg-status"],
 [data-testid="cell-frame-container"] img,
 [data-testid="cell-frame-container"] svg {
-  filter: blur(4px);
-  transition: filter 0.2s ease;
+	filter: blur(4px);
+	transition: filter 0.2s ease;
 }
 
 [data-testid="cell-frame-container"]:hover span[title],
 [data-testid="cell-frame-container"]:hover [data-testid="last-msg-status"],
 [data-testid="cell-frame-container"]:hover img,
 [data-testid="cell-frame-container"]:hover svg {
-  filter: none;
+	filter: none;
 }
 
 /* ── Floating glass header ───────────────────────────── */
 
 [data-testid="conversation-header"] {
-  position: sticky !important;
-  top: 12px;
-  margin: 12px 16px;
-  width: calc(100% - 32px) !important;
-  box-sizing: border-box !important;
-  padding: 8px 12px;
-  border-radius: var(--radius-xl);
-  background: var(--glass-bg) !important;
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  z-index: 999;
+	position: sticky !important;
+	top: 12px;
+	margin: 12px 16px;
+	width: calc(100% - 32px) !important;
+	box-sizing: border-box !important;
+	padding: 8px 12px;
+	border-radius: var(--radius-xl);
+	background: var(--glass-bg) !important;
+	backdrop-filter: var(--glass-blur);
+	-webkit-backdrop-filter: var(--glass-blur);
+	border: 1px solid var(--glass-border);
+	box-shadow: var(--glass-shadow);
+	z-index: 999;
 }
 
 /* ── Conversation area ───────────────────────────────── */
@@ -125,53 +127,57 @@ header._aotl {
  * tembus ke panel, memberi glass bubble sesuatu untuk di-blur/frost.
  */
 [data-testid="conversation-panel-wrapper"] {
-  background: rgba(22, 22, 28, 0.70) !important;
-  border-left: 1px solid var(--glass-border) !important;
+	background: rgba(22, 22, 28, 0.7) !important;
+	border-left: 1px solid var(--glass-border) !important;
 }
 
 [data-testid="conversation-panel-body"],
 [data-testid="conversation-panel-body"] > div {
-  background: transparent !important;
+	background: transparent !important;
 }
 
 [data-testid="conversation-panel-body"] {
-  padding-top: 12px !important;
+	padding-top: 12px !important;
 }
 
 /* ── Message bubbles — soft glass ────────────────────── */
 
 [data-testid="msg-container"] {
-  border-radius: var(--radius-lg) !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+	border-radius: var(--radius-lg) !important;
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
 }
 
 /* Glass wrapper for all messages */
 .message-out [data-testid="msg-container"],
 .message-in [data-testid="msg-container"] {
-  backdrop-filter: blur(16px) saturate(170%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(170%) !important;
+	backdrop-filter: blur(16px) saturate(170%) !important;
+	-webkit-backdrop-filter: blur(16px) saturate(170%) !important;
 }
 
 /* Outgoing — soft green glass */
 .message-out [data-testid="msg-container"] {
-  background: rgba(84, 167, 107, 0.12) !important;
-  border: 1px solid rgba(84, 167, 107, 0.18) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+	background: rgba(84, 167, 107, 0.12) !important;
+	border: 1px solid rgba(84, 167, 107, 0.18) !important;
+	box-shadow:
+		0 4px 12px rgba(0, 0, 0, 0.15),
+		inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Incoming — soft neutral glass */
 .message-in [data-testid="msg-container"] {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.10) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+	background: rgba(255, 255, 255, 0.06) !important;
+	border: 1px solid rgba(255, 255, 255, 0.1) !important;
+	box-shadow:
+		0 4px 12px rgba(0, 0, 0, 0.15),
+		inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
 }
 
 /* Ensure all nested content is transparent to show glass */
 [data-testid="msg-container"] * {
-  background: transparent !important;
-  border: none !important;
+	background: transparent !important;
+	border: none !important;
 }
 
 /* Hide pseudo-elements that break glass effect */
@@ -183,187 +189,297 @@ header._aotl {
 .message-in::after,
 .copyable-text::before,
 .copyable-text::after {
-  display: none !important;
+	display: none !important;
 }
 
 /* Hide message tail (bubble arrow) */
 [data-testid="tail-in"],
 [data-testid="tail-out"],
 span[data-testid*="tail"] {
-  display: none !important;
-  visibility: hidden !important;
-  width: 0 !important;
-  height: 0 !important;
+	display: none !important;
+	visibility: hidden !important;
+	width: 0 !important;
+	height: 0 !important;
 }
 
 /* ── Message hover glow & reveal effect ──────────────── */
 
 .message-out,
 .message-in {
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+	transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 
 /* Outgoing message hover — bright glow */
 .message-out:hover [data-testid="msg-container"] {
-  background: rgba(84, 167, 107, 0.20) !important;
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.15),
-    0 0 24px rgba(84, 167, 107, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(18px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+	background: rgba(84, 167, 107, 0.2) !important;
+	box-shadow:
+		0 4px 12px rgba(0, 0, 0, 0.15),
+		0 0 24px rgba(84, 167, 107, 0.25),
+		inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+	backdrop-filter: blur(18px) saturate(180%) !important;
+	-webkit-backdrop-filter: blur(18px) saturate(180%) !important;
 }
 
 /* Incoming message hover — subtle white glow */
 .message-in:hover [data-testid="msg-container"] {
-  background: rgba(255, 255, 255, 0.10) !important;
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.15),
-    0 0 20px rgba(255, 255, 255, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.10) !important;
-  backdrop-filter: blur(18px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+	background: rgba(255, 255, 255, 0.1) !important;
+	box-shadow:
+		0 4px 12px rgba(0, 0, 0, 0.15),
+		0 0 20px rgba(255, 255, 255, 0.15),
+		inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+	backdrop-filter: blur(18px) saturate(180%) !important;
+	-webkit-backdrop-filter: blur(18px) saturate(180%) !important;
 }
 
 /* Text reveal on hover */
 .message-out:hover [data-testid="msg-container"] span,
 .message-in:hover [data-testid="msg-container"] span {
-  color: rgba(255, 255, 255, 1) !important;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.1) !important;
-  transition: color 0.3s ease !important;
+	color: rgba(255, 255, 255, 1) !important;
+	text-shadow: 0 0 2px rgba(0, 0, 0, 0.1) !important;
+	transition: color 0.3s ease !important;
 }
 
 /* Timestamp & status brighten on hover */
 .message-out:hover [data-testid="msg-time"],
 .message-in:hover [data-testid="msg-time"] {
-  color: rgba(255, 255, 255, 0.9) !important;
+	color: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* ── Footer / compose bar — floating glass card ─────── */
 
 [data-testid="conversation-footer"],
 footer._ak4l {
-  margin: 0 12px 10px !important;
-  border-radius: var(--radius-xl) !important;
-  background: rgba(26, 26, 28, 0.82) !important;
-  backdrop-filter: var(--glass-blur) !important;
-  -webkit-backdrop-filter: var(--glass-blur) !important;
-  border: 1px solid var(--glass-border) !important;
-  box-shadow: var(--glass-shadow) !important;
+	margin: 0 12px 10px !important;
+	border-radius: var(--radius-xl) !important;
+	background: rgba(26, 26, 28, 0.82) !important;
+	backdrop-filter: var(--glass-blur) !important;
+	-webkit-backdrop-filter: var(--glass-blur) !important;
+	border: 1px solid var(--glass-border) !important;
+	box-shadow: var(--glass-shadow) !important;
 }
 
 /* Let the compose input inherit the footer's glass — no extra layer */
 [data-testid="conversation-compose-box-input"],
 [contenteditable="true"].selectable-text {
-  background: transparent !important;
-  border: none !important;
-  color: var(--text-primary) !important;
+	background: transparent !important;
+	border: none !important;
+	color: var(--text-primary) !important;
 }
 
 /* ── Right panel / intro screen ──────────────────────── */
 
 [data-testid="intro-md"],
 [data-testid="default-user"] {
-  background: transparent !important;
+	background: transparent !important;
 }
 
 /* ── Emoji / sticker / GIF picker ───────────────────── */
 
 /* Outer floating container (parents of expressions-panel) */
 div:has(> ul[data-testid="expressions-panel"]) {
-  background: rgba(24, 24, 28, 0.92) !important;
-  backdrop-filter: blur(32px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.10) !important;
-  border-radius: 18px !important;
-  box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-  overflow: hidden !important;
+	background: rgba(24, 24, 28, 0.92) !important;
+	backdrop-filter: blur(32px) saturate(180%) !important;
+	-webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+	border: 1px solid rgba(255, 255, 255, 0.1) !important;
+	border-radius: 18px !important;
+	box-shadow:
+		0 24px 64px rgba(0, 0, 0, 0.55),
+		inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+	overflow: hidden !important;
 }
 
 /* Inner panel — transparent so outer glass shows */
 [data-testid="expressions-panel"],
 [data-testid="expressions-panel"] > * {
-  background: transparent !important;
+	background: transparent !important;
 }
 
 /* Search bar — style the form wrapper (icon + input as one unit) */
 [data-testid="expressions-panel"] form {
-  background: rgba(255, 255, 255, 0.07) !important;
-  border: 1px solid rgba(255, 255, 255, 0.09) !important;
-  border-radius: 10px !important;
+	background: rgba(255, 255, 255, 0.07) !important;
+	border: 1px solid rgba(255, 255, 255, 0.09) !important;
+	border-radius: 10px !important;
 }
 
 /* Input itself transparent — inherits the form's glass */
 [data-testid="expressions-panel"] input {
-  background: transparent !important;
-  border: none !important;
-  color: var(--text-primary) !important;
+	background: transparent !important;
+	border: none !important;
+	color: var(--text-primary) !important;
 }
 
 [data-testid="expressions-panel"] input::placeholder {
-  color: var(--text-secondary) !important;
+	color: var(--text-secondary) !important;
 }
 
 /* Category tab buttons */
 [data-testid="expressions-panel"] button {
-  background: transparent !important;
-  border-radius: 8px !important;
-  transition: background 0.12s ease !important;
+	background: transparent !important;
+	border-radius: 8px !important;
+	transition: background 0.12s ease !important;
 }
 
 [data-testid="expressions-panel"] button:hover {
-  background: rgba(255, 255, 255, 0.09) !important;
+	background: rgba(255, 255, 255, 0.09) !important;
 }
 
 /* Active tab sliding marker */
 [data-testid="menu-tab-marker"] > div {
-  background: var(--accent) !important;
-  border-radius: 2px !important;
+	background: var(--accent) !important;
+	border-radius: 2px !important;
+}
+
+/* ── Modal overlay & dialogs ─────────────────────────── */
+
+/* Backdrop — frosted glass, transparan seperti kacamata */
+div[role="presentation"] {
+	background: rgba(0, 0, 0, 0.1) !important;
+	backdrop-filter: blur(28px) saturate(170%) !important;
+	-webkit-backdrop-filter: blur(28px) saturate(170%) !important;
+	z-index: 9999 !important;
+}
+
+/* Dialog card — glass panel */
+[role="dialog"] {
+	-webkit-backdrop-filter: blur(32px) saturate(190%) !important;
+	border: 1px solid rgba(255, 255, 255, 0.12) !important;
+	border-radius: var(--radius-xl) !important;
+	box-shadow:
+		0 24px 64px rgba(0, 0, 0, 0.65),
+		inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+	overflow: hidden !important;
+	max-height: 80vh !important;
+	display: flex !important;
+	flex-direction: column !important;
+	backdrop-filter: blur(8px) saturate(190%) !important;
+	background: transparent !important;
+}
+
+/* Word-wrap tapi JANGAN paksa overflow visible — itu yang merusak scroll */
+[role="dialog"] * {
+	word-wrap: break-word !important;
+}
+
+/* Inputs & buttons */
+[role="dialog"] input,
+[role="dialog"] textarea,
+[role="dialog"] button {
+	color: var(--text-primary) !important;
+	border-radius: var(--radius-sm) !important;
+	transition: all 0.12s ease !important;
+}
+
+[role="dialog"] button:hover {
+	background: rgba(255, 255, 255, 0.1) !important;
+	border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Header & footer — tidak ikut scroll */
+[role="dialog"] [role="heading"],
+[role="dialog"] header,
+[role="dialog"] footer {
+	flex-shrink: 0 !important;
+}
+
+/* Recent chats list — tinggi dibatasi & bisa scroll */
+[role="dialog"] [role="listbox"],
+[role="dialog"] ul {
+	overflow-y: auto !important;
+	overflow-x: hidden !important;
+	max-height: 420px !important;
+	flex: 1 1 auto !important;
+	min-height: 0 !important;
+}
+
+/* List items */
+[role="dialog"] [role="option"],
+[role="dialog"] li {
+	border-radius: 8px !important;
+	padding: 8px !important;
+	transition: background 0.12s ease !important;
+	color: var(--text-primary) !important;
+}
+
+[role="dialog"] [role="option"]:hover,
+[role="dialog"] li:hover {
+	background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Scrollbar di dalam dialog */
+[role="dialog"] *::-webkit-scrollbar {
+	width: 6px;
+}
+
+[role="dialog"] *::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+[role="dialog"] *::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.15);
+	border-radius: 3px;
+}
+
+[role="dialog"] *::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.25);
 }
 
 /* ── Context menu & dropdown ────────────────────────── */
 
-/* Menu container */
+/* Menu container — EXCLUDE modals/dialogs */
 [role="menu"],
-[data-testid="menu"],
-[data-testid="popup-contents"] {
-  background: rgba(30, 30, 34, 0.88) !important;
-  backdrop-filter: blur(28px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.10) !important;
-  border-radius: 14px !important;
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-  padding: 4px !important;
-  overflow: hidden !important;
+[data-testid="menu"] {
+	background: rgba(30, 30, 34, 0.88) !important;
+	backdrop-filter: blur(28px) saturate(180%) !important;
+	-webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+	border: 1px solid rgba(255, 255, 255, 0.1) !important;
+	border-radius: 14px !important;
+	box-shadow:
+		0 20px 60px rgba(0, 0, 0, 0.55),
+		inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+	padding: 4px !important;
+	overflow: hidden !important;
+}
+
+/* Popup contents — but NOT modal dialogs */
+[data-testid="popup-contents"]:not([data-testid*="modal"]):not(
+		[role="dialog"]
+	) {
+	background: rgba(30, 30, 34, 0.88) !important;
+	backdrop-filter: blur(28px) saturate(180%) !important;
+	-webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+	border: 1px solid rgba(255, 255, 255, 0.1) !important;
+	border-radius: 14px !important;
+	box-shadow:
+		0 20px 60px rgba(0, 0, 0, 0.55),
+		inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+	padding: 4px !important;
+	overflow: visible !important;
+	height: 80vh !important;
 }
 
 /* Menu items */
 [role="menuitem"],
 [role="option"] {
-  border-radius: 10px !important;
-  transition: background 0.12s ease !important;
-  color: var(--text-primary) !important;
+	border-radius: 10px !important;
+	transition: background 0.12s ease !important;
+	color: var(--text-primary) !important;
 }
 
 [role="menuitem"]:hover,
 [role="option"]:hover,
 [role="menuitem"]:focus,
 [role="option"]:focus {
-  background: rgba(255, 255, 255, 0.09) !important;
-  outline: none !important;
+	background: rgba(255, 255, 255, 0.09) !important;
+	outline: none !important;
 }
 
 /* Separator */
 [role="separator"],
 [data-testid="menu"] hr,
 [data-testid="popup-contents"] hr {
-  border: none !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
-  margin: 4px 10px !important;
+	border: none !important;
+	border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+	margin: 4px 10px !important;
 }
 
 /* ── Blur toggle off (⌘+Shift+0) ────────────────────── */
@@ -372,8 +488,8 @@ body.wa-unblur [data-testid="cell-frame-title"] span[title],
 body.wa-unblur [data-testid="last-msg-status"],
 body.wa-unblur [data-testid="cell-frame-container"] img,
 body.wa-unblur [data-testid="cell-frame-container"] svg {
-  filter: none !important;
-  transition: filter 0.25s ease;
+	filter: none !important;
+	transition: filter 0.25s ease;
 }
 
 /* ── Message status icons (checkmarks) ──────────────── */
@@ -382,60 +498,71 @@ body.wa-unblur [data-testid="cell-frame-container"] svg {
 [data-testid="msg-time"],
 .msg-time,
 [data-testid="message-status"] {
-  color: rgba(255, 255, 255, 0.6) !important;
-  font-size: 12px !important;
-  transition: color 0.2s ease !important;
+	color: rgba(255, 255, 255, 0.6) !important;
+	font-size: 12px !important;
+	transition: color 0.2s ease !important;
 }
 
 /* Checkmark SVGs */
 [data-testid="msg-status"] svg,
 .msg-status svg,
 [data-testid="message-status"] svg {
-  filter: drop-shadow(0 2px 4px rgba(84, 167, 107, 0.3)) !important;
-  transition: filter 0.3s ease, transform 0.2s ease !important;
+	filter: drop-shadow(0 2px 4px rgba(84, 167, 107, 0.3)) !important;
+	transition:
+		filter 0.3s ease,
+		transform 0.2s ease !important;
 }
 
 /* Single checkmark (sent) */
 [data-testid="message-status"] svg:not(:last-child) {
-  color: rgba(84, 167, 107, 0.7) !important;
+	color: rgba(84, 167, 107, 0.7) !important;
 }
 
 /* Double checkmark (delivered) */
 [data-testid="message-status"] svg:last-child {
-  color: rgba(84, 167, 107, 0.85) !important;
+	color: rgba(84, 167, 107, 0.85) !important;
 }
 
 /* Blue double checkmark (read) */
 .message-out [data-testid="msg-status"] svg:last-child {
-  color: rgba(84, 167, 107, 1) !important;
+	color: rgba(84, 167, 107, 1) !important;
 }
 
 /* Hover effect on message — brighten status */
 .message-out:hover [data-testid="msg-status"] svg,
 .message-out:hover [data-testid="message-status"] svg {
-  filter: drop-shadow(0 3px 8px rgba(84, 167, 107, 0.5)) !important;
-  transform: scale(1.08) !important;
+	filter: drop-shadow(0 3px 8px rgba(84, 167, 107, 0.5)) !important;
+	transform: scale(1.08) !important;
 }
 
 /* Animation saat icon muncul */
 @keyframes statusPulse {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+	0% {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 
 [data-testid="message-status"] svg {
-  animation: statusPulse 0.3s ease-out !important;
+	animation: statusPulse 0.3s ease-out !important;
 }
 
 /* ── Scrollbar ───────────────────────────────────────── */
 
-::-webkit-scrollbar             { width: 5px; }
-::-webkit-scrollbar-track       { background: transparent; }
-::-webkit-scrollbar-thumb       { background: rgba(255, 255, 255, 0.13); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.24); }
+::-webkit-scrollbar {
+	width: 5px;
+}
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.13);
+	border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.24);
+}
