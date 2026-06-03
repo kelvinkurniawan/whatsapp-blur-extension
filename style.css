@@ -1,0 +1,178 @@
+:root {
+  --glass-bg: rgba(28, 28, 30, 0.72);
+  --glass-bg-hover: rgba(58, 58, 60, 0.6);
+  --glass-bg-active: rgba(10, 132, 255, 0.14);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-accent: rgba(10, 132, 255, 0.22);
+  --glass-blur: blur(24px) saturate(180%);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --radius-xl: 22px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --accent: #0a84ff;
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.48);
+}
+
+/* ── Base ────────────────────────────────────────────── */
+
+body {
+  background:
+    radial-gradient(ellipse at 15% 15%, #1b1b2f 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 85%, #0f1a2a 0%, transparent 55%),
+    #080809 !important;
+}
+
+#app,
+.app-wrapper-web {
+  background: transparent !important;
+}
+
+/* ── Left sidebar — glass panel ─────────────────────── */
+
+[data-testid="sidebar"],
+[data-testid="pane-side"] {
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border-right: 1px solid var(--glass-border) !important;
+}
+
+/* Search + header strip inside sidebar */
+[data-testid="sidebar-search"],
+header._aotl {
+  background: transparent !important;
+}
+
+/* Search pill */
+[data-testid="search-input-container"],
+[role="searchbox"] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 50px !important;
+  color: var(--text-primary) !important;
+}
+
+/* ── Chat list ───────────────────────────────────────── */
+
+[data-testid="chat-list"] {
+  background: transparent !important;
+}
+
+[data-testid="cell-frame-container"] {
+  border-radius: var(--radius-md) !important;
+  margin: 1px 6px !important;
+  transition: background 0.18s ease, border 0.18s ease !important;
+  border: 1px solid transparent !important;
+}
+
+[data-testid="cell-frame-container"]:hover {
+  background: var(--glass-bg-hover) !important;
+  border-color: var(--glass-border) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+[data-testid="cell-frame-container"][aria-selected="true"],
+[data-testid="cell-frame-container"].active {
+  background: var(--glass-bg-active) !important;
+  border-color: var(--glass-border-accent) !important;
+}
+
+/* ── Privacy blur (preserved) ───────────────────────── */
+
+[data-testid="cell-frame-title"] span[title],
+[data-testid="last-msg-status"],
+[data-testid="cell-frame-container"] img,
+[data-testid="cell-frame-container"] svg {
+  filter: blur(4px);
+  transition: filter 0.2s ease;
+}
+
+[data-testid="cell-frame-container"]:hover span[title],
+[data-testid="cell-frame-container"]:hover [data-testid="last-msg-status"],
+[data-testid="cell-frame-container"]:hover img,
+[data-testid="cell-frame-container"]:hover svg {
+  filter: none;
+}
+
+/* ── Floating glass header ───────────────────────────── */
+
+[data-testid="conversation-header"] {
+  position: sticky !important;
+  top: 12px;
+  margin: 12px 16px;
+  padding: 8px 12px;
+  border-radius: var(--radius-xl);
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  z-index: 999;
+}
+
+/* ── Conversation area ───────────────────────────────── */
+
+[data-testid="conversation-panel-wrapper"],
+[data-testid="conversation-panel-body"],
+[data-testid="conversation-panel-body"] > div {
+  background: transparent !important;
+}
+
+[data-testid="conversation-panel-body"] {
+  padding-top: 12px !important;
+}
+
+/* ── Message bubbles — glass ─────────────────────────── */
+
+[data-testid="msg-container"] {
+  border-radius: var(--radius-lg) !important;
+}
+
+/* Outgoing — accent glass */
+.message-out [data-testid="msg-container"],
+.message-out .copyable-area > div:first-child {
+  background: rgba(10, 132, 255, 0.16) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(10, 132, 255, 0.22) !important;
+}
+
+/* Incoming — neutral glass */
+.message-in [data-testid="msg-container"],
+.message-in .copyable-area > div:first-child {
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ── Footer / compose bar ────────────────────────────── */
+
+[data-testid="conversation-footer"],
+footer._ak4l {
+  background: rgba(22, 22, 24, 0.75) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border-top: 1px solid var(--glass-border) !important;
+  padding: 8px 16px !important;
+}
+
+/* Compose input */
+[data-testid="conversation-compose-box-input"],
+[contenteditable="true"].selectable-text {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--glass-border) !important;
+  color: var(--text-primary) !important;
+  padding: 8px 14px !important;
+}
+
+/* ── Right panel / intro screen ──────────────────────── */
+
+[data-testid="intro-md"],
+[data-testid="default-user"] {
+  background: transparent !important;
+}
