@@ -16,6 +16,7 @@
 	--wa-green-light: #dcf8c6;
 	--text-primary: rgba(255, 255, 255, 0.92);
 	--text-secondary: rgba(255, 255, 255, 0.48);
+	--wa-blur-radius: 8px;
 }
 
 /* ── Base ────────────────────────────────────────────── */
@@ -91,7 +92,7 @@ header._aotl {
 [data-testid="last-msg-status"],
 [data-testid="cell-frame-container"] img,
 [data-testid="cell-frame-container"] svg {
-	filter: blur(4px);
+	filter: blur(var(--wa-blur-radius));
 	transition: filter 0.2s ease;
 }
 
@@ -626,4 +627,45 @@ body.wa-unblur [data-testid="cell-frame-container"] svg {
 }
 ::-webkit-scrollbar-thumb:hover {
 	background: rgba(255, 255, 255, 0.24);
+}
+
+/* ── Screen Share Mode ───────────────────────────────── */
+
+body.wa-screenShare [data-testid="msg-container"] {
+	filter: blur(12px);
+	transition: filter 0.2s ease;
+}
+
+body.wa-screenShare [data-testid="msg-container"]:hover {
+	filter: none;
+}
+
+body.wa-screenShare .copyable-text,
+body.wa-screenShare [data-pre-plain-text],
+body.wa-screenShare [data-testid="msg-text"] {
+	filter: blur(12px) !important;
+	transition: filter 0.2s ease;
+}
+
+body.wa-screenShare [data-testid="msg-container"]:hover .copyable-text,
+body.wa-screenShare [data-testid="msg-container"]:hover [data-pre-plain-text],
+body.wa-screenShare [data-testid="msg-container"]:hover [data-testid="msg-text"] {
+	filter: none !important;
+}
+
+body.wa-screenShare img[src*="media"],
+body.wa-screenShare [data-testid="media-container"] {
+	filter: blur(16px);
+	transition: filter 0.2s ease;
+}
+
+body.wa-screenShare [data-testid="msg-container"]:hover img[src*="media"],
+body.wa-screenShare [data-testid="msg-container"]:hover [data-testid="media-container"] {
+	filter: none;
+}
+
+body.wa-screenShare [data-testid="conversation-header-title"],
+body.wa-screenShare [data-testid="conversation-header-subtitle"] {
+	filter: blur(8px);
+	transition: filter 0.2s ease;
 }

@@ -1,4 +1,6 @@
 let enabled = true;
+let screenShareMode = false;
+let blurRadius = 8;
 
 function showToast(message) {
   const existing = document.getElementById('wa-blur-toast');
@@ -33,10 +35,64 @@ function showToast(message) {
   setTimeout(() => toast.remove(), 1950);
 }
 
+function applyBlurRadius() {
+  document.documentElement.style.setProperty('--wa-blur-radius', `${blurRadius}px`);
+}
+
+function toggleBlur() {
+  enabled = !enabled;
+  document.body.classList.toggle('wa-unblur', !enabled);
+  chrome.storage.sync.set({ enabled });
+  showToast(enabled ? '🔒 Privacy blur: ON' : '👁 Privacy blur: OFF');
+  chrome.runtime.sendMessage({ action: 'updatePopup', enabled, screenShareMode });
+}
+
+function toggleScreenShare() {
+  screenShareMode = !screenShareMode;
+  document.body.classList.toggle('wa-screenShare', screenShareMode);
+  chrome.storage.sync.set({ screenShareMode });
+  showToast(screenShareMode ? '🎬 Screen share mode: ON' : '🎬 Screen share mode: OFF');
+  chrome.runtime.sendMessage({ action: 'updatePopup', enabled, screenShareMode });
+}
+
+function loadSettings() {
+  chrome.storage.sync.get(['enabled', 'screenShareMode', 'blurRadius'], (result) => {
+    enabled = result.enabled !== false;
+    screenShareMode = result.screenShareMode || false;
+    blurRadius = result.blurRadius || 8;
+
+    document.body.classList.toggle('wa-unblur', !enabled);
+    document.body.classList.toggle('wa-screenShare', screenShareMode);
+    applyBlurRadius();
+  });
+}
+
 document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === '0') {
-    enabled = !enabled;
-    document.body.classList.toggle('wa-unblur', !enabled);
-    showToast(enabled ? '🔒 Privacy blur: ON' : '👁 Privacy blur: OFF');
+    e.preventDefault();
+    toggleBlur();
+  }
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === '9') {
+    e.preventDefault();
+    toggleScreenShare();
   }
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'toggleBlur') {
+    toggleBlur();
+    sendResponse({ success: true });
+  } else if (request.action === 'toggleScreenShare') {
+    toggleScreenShare();
+    sendResponse({ success: true });
+  } else if (request.action === 'updateBlurRadius') {
+    blurRadius = request.value;
+    applyBlurRadius();
+    chrome.storage.sync.set({ blurRadius });
+    sendResponse({ success: true });
+  } else if (request.action === 'getStatus') {
+    sendResponse({ enabled, screenShareMode, blurRadius });
+  }
+});
+
+loadSettings();

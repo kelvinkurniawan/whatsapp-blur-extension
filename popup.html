@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Blur Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <h1>WhatsApp Blur</h1>
+    </header>
+
+    <div class="popup-content">
+      <!-- Privacy Blur Toggle -->
+      <div class="setting-group">
+        <label for="blur-toggle" class="setting-label">
+          <span class="label-text">Privacy Blur</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="blur-toggle" class="toggle-input">
+            <span class="toggle-slider"></span>
+          </div>
+        </label>
+        <p class="setting-description">Blur contact names and avatars in chat list</p>
+      </div>
+
+      <!-- Blur Radius Slider -->
+      <div class="setting-group">
+        <label for="blur-radius" class="setting-label">
+          <span class="label-text">Blur Intensity</span>
+          <span class="blur-value" id="blur-value">8px</span>
+        </label>
+        <input type="range" id="blur-radius" class="slider" min="4" max="20" value="8" step="1">
+        <p class="setting-description">Adjust blur strength (4px - 20px)</p>
+      </div>
+
+      <!-- Screen Share Mode Toggle -->
+      <div class="setting-group">
+        <label for="screenShare-toggle" class="setting-label">
+          <span class="label-text">Screen Share Mode</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="screenShare-toggle" class="toggle-input">
+            <span class="toggle-slider"></span>
+          </div>
+        </label>
+        <p class="setting-description">Blur message content + sidebar</p>
+      </div>
+    </div>
+
+    <!-- Shortcuts Section -->
+    <footer class="popup-footer">
+      <h3 class="shortcuts-title">Keyboard Shortcuts</h3>
+      <div class="shortcuts-list">
+        <div class="shortcut-item">
+          <kbd>⌘/Ctrl</kbd> <kbd>⇧</kbd> <kbd>0</kbd>
+          <span>Toggle Blur</span>
+        </div>
+        <div class="shortcut-item">
+          <kbd>⌘/Ctrl</kbd> <kbd>⇧</kbd> <kbd>9</kbd>
+          <span>Screen Share Mode</span>
+        </div>
+      </div>
+      <p class="shortcuts-note">Customize in chrome://extensions/shortcuts</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
