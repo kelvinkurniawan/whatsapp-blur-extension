@@ -36,7 +36,13 @@ function showToast(message) {
 }
 
 function applyBlurRadius() {
-  document.documentElement.style.setProperty('--wa-blur-radius', `${blurRadius}px`);
+  let styleEl = document.getElementById('wa-blur-radius-override');
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = 'wa-blur-radius-override';
+    (document.head || document.documentElement).appendChild(styleEl);
+  }
+  styleEl.textContent = `:root { --wa-blur-radius: ${blurRadius}px !important; }`;
 }
 
 function toggleBlur() {
@@ -55,15 +61,25 @@ function toggleScreenShare() {
   chrome.runtime.sendMessage({ action: 'updatePopup', enabled, screenShareMode });
 }
 
+function applyBodyClasses() {
+  if (!document.body) return;
+  document.body.classList.toggle('wa-unblur', !enabled);
+  document.body.classList.toggle('wa-screenShare', screenShareMode);
+}
+
 function loadSettings() {
   chrome.storage.sync.get(['enabled', 'screenShareMode', 'blurRadius'], (result) => {
     enabled = result.enabled !== false;
     screenShareMode = result.screenShareMode || false;
     blurRadius = result.blurRadius || 8;
 
-    document.body.classList.toggle('wa-unblur', !enabled);
-    document.body.classList.toggle('wa-screenShare', screenShareMode);
     applyBlurRadius();
+
+    if (document.body) {
+      applyBodyClasses();
+    } else {
+      document.addEventListener('DOMContentLoaded', applyBodyClasses);
+    }
   });
 }
 
