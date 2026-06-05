@@ -14,12 +14,6 @@ function updateUI(status) {
   updateBlurValue(status.blurRadius);
 }
 
-function getActiveTab() {
-  return chrome.tabs.query({ url: 'https://web.whatsapp.com/*' }, (tabs) => {
-    return tabs[0];
-  });
-}
-
 blurToggle.addEventListener('change', () => {
   chrome.tabs.query({ url: 'https://web.whatsapp.com/*' }, (tabs) => {
     if (tabs.length > 0) {
@@ -60,14 +54,12 @@ screenShareToggle.addEventListener('change', () => {
 });
 
 function getStatus() {
-  chrome.tabs.query({ url: 'https://web.whatsapp.com/*' }, (tabs) => {
-    if (tabs.length > 0) {
-      chrome.tabs.sendMessage(tabs[0].id, { action: 'getStatus' }, (response) => {
-        if (response) {
-          updateUI(response);
-        }
-      });
-    }
+  chrome.storage.sync.get(['enabled', 'screenShareMode', 'blurRadius'], (result) => {
+    updateUI({
+      enabled: result.enabled !== false,
+      screenShareMode: result.screenShareMode || false,
+      blurRadius: result.blurRadius || 8,
+    });
   });
 }
 

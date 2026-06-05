@@ -36,13 +36,7 @@ function showToast(message) {
 }
 
 function applyBlurRadius() {
-  let styleEl = document.getElementById('wa-blur-radius-override');
-  if (!styleEl) {
-    styleEl = document.createElement('style');
-    styleEl.id = 'wa-blur-radius-override';
-    (document.head || document.documentElement).appendChild(styleEl);
-  }
-  styleEl.textContent = `:root { --wa-blur-radius: ${blurRadius}px !important; }`;
+  document.documentElement.style.setProperty('--wa-blur-radius', `${blurRadius}px`);
 }
 
 function toggleBlur() {

@@ -152,36 +152,26 @@ img.emoji {
 
 /* ── Message bubbles — soft glass ────────────────────── */
 
+/* Base: incoming glass (fallback for all messages) */
 [data-testid="msg-container"] {
 	border-radius: var(--radius-lg) !important;
-	background: transparent !important;
-	border: none !important;
-	box-shadow: none !important;
-}
-
-/* Glass wrapper for all messages */
-.message-out [data-testid="msg-container"],
-.message-in [data-testid="msg-container"] {
-	backdrop-filter: blur(16px) saturate(170%) !important;
-	-webkit-backdrop-filter: blur(16px) saturate(170%) !important;
-}
-
-/* Outgoing — soft green glass */
-.message-out [data-testid="msg-container"] {
-	background: rgba(84, 167, 107, 0.12) !important;
-	border: 1px solid rgba(84, 167, 107, 0.18) !important;
-	box-shadow:
-		0 4px 12px rgba(0, 0, 0, 0.15),
-		inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-}
-
-/* Incoming — soft neutral glass */
-.message-in [data-testid="msg-container"] {
 	background: rgba(255, 255, 255, 0.06) !important;
 	border: 1px solid rgba(255, 255, 255, 0.1) !important;
 	box-shadow:
 		0 4px 12px rgba(0, 0, 0, 0.15),
 		inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+	backdrop-filter: blur(16px) saturate(170%) !important;
+	-webkit-backdrop-filter: blur(16px) saturate(170%) !important;
+}
+
+/* Outgoing — soft green glass (multiple selectors for compatibility) */
+.message-out [data-testid="msg-container"],
+[data-testid="msg-container"]:has([data-testid="tail-out"]) {
+	background: rgba(84, 167, 107, 0.12) !important;
+	border-color: rgba(84, 167, 107, 0.18) !important;
+	box-shadow:
+		0 4px 12px rgba(0, 0, 0, 0.15),
+		inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Ensure all nested content is transparent to show glass */
@@ -214,23 +204,12 @@ span[data-testid*="tail"] {
 
 /* ── Message hover glow & reveal effect ──────────────── */
 
-.message-out,
-.message-in {
+[data-testid="msg-container"] {
 	transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 
-/* Outgoing message hover — bright glow */
-.message-out:hover [data-testid="msg-container"] {
-	background: rgba(84, 167, 107, 0.2) !important;
-	box-shadow:
-		0 4px 12px rgba(0, 0, 0, 0.15),
-		0 0 24px rgba(84, 167, 107, 0.25),
-		inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-	backdrop-filter: blur(18px) saturate(180%) !important;
-	-webkit-backdrop-filter: blur(18px) saturate(180%) !important;
-}
-
-/* Incoming message hover — subtle white glow */
+/* Incoming hover — subtle white glow */
+[data-testid="msg-container"]:hover,
 .message-in:hover [data-testid="msg-container"] {
 	background: rgba(255, 255, 255, 0.1) !important;
 	box-shadow:
@@ -241,7 +220,20 @@ span[data-testid*="tail"] {
 	-webkit-backdrop-filter: blur(18px) saturate(180%) !important;
 }
 
-/* Text reveal on hover */
+/* Outgoing hover — bright green glow */
+.message-out:hover [data-testid="msg-container"],
+[data-testid="msg-container"]:has([data-testid="tail-out"]):hover {
+	background: rgba(84, 167, 107, 0.2) !important;
+	box-shadow:
+		0 4px 12px rgba(0, 0, 0, 0.15),
+		0 0 24px rgba(84, 167, 107, 0.25),
+		inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+	backdrop-filter: blur(18px) saturate(180%) !important;
+	-webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+}
+
+/* Text & timestamp brighten on hover */
+[data-testid="msg-container"]:hover span,
 .message-out:hover [data-testid="msg-container"] span,
 .message-in:hover [data-testid="msg-container"] span {
 	color: rgba(255, 255, 255, 1) !important;
@@ -249,7 +241,7 @@ span[data-testid*="tail"] {
 	transition: color 0.3s ease !important;
 }
 
-/* Timestamp & status brighten on hover */
+[data-testid="msg-container"]:hover [data-testid="msg-time"],
 .message-out:hover [data-testid="msg-time"],
 .message-in:hover [data-testid="msg-time"] {
 	color: rgba(255, 255, 255, 0.9) !important;
@@ -595,13 +587,15 @@ body.wa-unblur [data-testid="cell-frame-container"] svg {
 }
 
 /* Blue double checkmark (read) */
-.message-out [data-testid="msg-status"] svg:last-child {
+.message-out [data-testid="msg-status"] svg:last-child,
+[data-testid="msg-container"]:has([data-testid="tail-out"]) [data-testid="msg-status"] svg:last-child {
 	color: rgba(84, 167, 107, 1) !important;
 }
 
 /* Hover effect on message — brighten status */
 .message-out:hover [data-testid="msg-status"] svg,
-.message-out:hover [data-testid="message-status"] svg {
+.message-out:hover [data-testid="message-status"] svg,
+[data-testid="msg-container"]:has([data-testid="tail-out"]):hover [data-testid="msg-status"] svg {
 	filter: drop-shadow(0 3px 8px rgba(84, 167, 107, 0.5)) !important;
 	transform: scale(1.08) !important;
 }
